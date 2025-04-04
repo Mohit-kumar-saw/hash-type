@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import { UserCircleIcon, MoonIcon, MusicalNoteIcon, ArrowLeftOnRectangleIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { UserCircleIcon, MoonIcon, MusicNoteIcon, LogoutIcon, TrashIcon } from '@heroicons/react/outline';
 
 const Settings = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -89,7 +89,7 @@ const Settings = () => {
                 {/* Music Toggle */}
                 <div className="flex items-center justify-between p-3 bg-gray-700/30 rounded-lg">
                   <div className="flex items-center gap-3">
-                    <MusicalNoteIcon className="w-5 h-5 text-purple-400" />
+                    <MusicNoteIcon className="w-5 h-5 text-purple-400" />
                     <span className="text-gray-200">Background Music</span>
                   </div>
                   <button
@@ -114,7 +114,7 @@ const Settings = () => {
             <h2 className="text-xl font-semibold text-white mb-6">Account Actions</h2>
             <div className="flex flex-wrap gap-4">
               <button className="flex items-center gap-2 px-4 py-2 bg-red-500/10 text-red-500 hover:bg-red-500/20 rounded-lg transition-colors">
-                <ArrowLeftOnRectangleIcon className="w-5 h-5" />
+                <LogoutIcon className="w-5 h-5" />
                 Logout
               </button>
               <button className="flex items-center gap-2 px-4 py-2 bg-gray-700/50 text-gray-300 hover:bg-gray-700 rounded-lg transition-colors">

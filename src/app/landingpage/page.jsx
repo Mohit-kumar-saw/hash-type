@@ -8,7 +8,7 @@ import {
   AcademicCapIcon, 
   KeyIcon, 
   UserGroupIcon 
-} from '@heroicons/react/24/outline';
+} from '@heroicons/react/outline';
 
 const Page = () => {
   const router = useRouter();

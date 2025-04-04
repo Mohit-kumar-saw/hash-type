@@ -8,8 +8,8 @@ import {
   ChartBarIcon, 
   ClockIcon, 
   DocumentTextIcon, 
-  TrophyIcon 
-} from '@heroicons/react/24/outline';
+  StarIcon 
+} from '@heroicons/react/outline';
 
 export default function Dashboard() {
   // Dummy data
@@ -65,7 +65,7 @@ export default function Dashboard() {
                 <p className="text-2xl font-bold text-white mt-1">{accuracy}%</p>
               </div>
               <div className="p-3 bg-green-500/10 rounded-lg">
-                <TrophyIcon className="w-6 h-6 text-green-500" />
+                <StarIcon className="w-6 h-6 text-green-500" />
               </div>
             </div>
             <div className="mt-3 flex items-center text-sm">
@@ -120,7 +120,7 @@ export default function Dashboard() {
           <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700/50">
             <div className="text-center">
               <div className="inline-flex p-4 bg-purple-500/10 rounded-full mb-4">
-                <TrophyIcon className="w-8 h-8 text-purple-500" />
+                <StarIcon className="w-8 h-8 text-purple-500" />
               </div>
               <h3 className="text-xl font-bold text-white mb-2">Achievement Unlocked!</h3>
               <p className="text-gray-400 mb-4">You&apos;ve reached a new milestone in your typing journey.</p>

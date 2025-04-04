@@ -5,7 +5,7 @@ import Modal from "./Modal";
 import Image from "next/image";
 import Graph from "./Graph";
 import Button from "./ui/Button";
-import { ChevronDownIcon, ArrowPathIcon, PlayIcon } from '@heroicons/react/24/solid';
+import { ChevronDownIcon, RefreshIcon, PlayIcon } from '@heroicons/react/solid';
 
 const DIFFICULTY_LEVELS = {
   BEGINNER: {
@@ -398,7 +398,7 @@ const TypingGame = () => {
                 onClick={newGame}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/50 backdrop-blur-sm hover:bg-gray-700/50 transition-all text-purple-400 hover:text-purple-300"
               >
-                <ArrowPathIcon className="w-5 h-5" />
+                <RefreshIcon className="w-5 h-5" />
                 <span>Restart</span>
               </button>
             )}

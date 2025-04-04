@@ -5,7 +5,7 @@ import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
 import { useState } from 'react';
 import React from 'react';
-import { TrophyIcon, FireIcon, ClockIcon } from '@heroicons/react/24/outline';
+import { StarIcon, FireIcon, ClockIcon } from '@heroicons/react/outline';
 
 export default function Leaderboard() {
   // Dummy leaderboard data
@@ -55,7 +55,7 @@ export default function Leaderboard() {
           <div className="flex items-center gap-2">
             {item.rank === 1 ? (
               <div className="w-8 h-8 flex items-center justify-center bg-yellow-500/10 rounded-lg">
-                <TrophyIcon className="w-5 h-5 text-yellow-500" />
+                <StarIcon className="w-5 h-5 text-yellow-500" />
               </div>
             ) : (
               <div className="w-8 h-8 flex items-center justify-center bg-gray-700/50 rounded-lg text-gray-400 font-medium">
@@ -149,7 +149,7 @@ export default function Leaderboard() {
               onClick={() => setActiveTab('all-time')}
             >
               <div className="flex items-center gap-2">
-                <TrophyIcon className="w-5 h-5" />
+                <StarIcon className="w-5 h-5" />
                 <span>All-time</span>
               </div>
             </button>
