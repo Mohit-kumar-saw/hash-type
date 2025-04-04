@@ -1,7 +1,7 @@
 // components/Footer.js
 
 import React from 'react';
-import { HeartIcon, GiftIcon } from '@heroicons/react/24/outline';
+import { HeartIcon, GiftIcon } from '@heroicons/react/outline';
 
 export default function Footer() {
   return (
