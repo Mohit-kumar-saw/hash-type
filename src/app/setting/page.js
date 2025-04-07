@@ -11,16 +11,15 @@ const Settings = () => {
   const [isMusicEnabled, setIsMusicEnabled] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 w-full mt-[278px]">
-      <div className="max-w-[75%] mx-auto"  >
-      <Navbar />
+    <div className="flex-1">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+        <Navbar />
       </div>
 
-      <div className="max-w-[80%] mx-auto"  >
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="max-w-[1920px] mx-auto">
           {/* Header */}
-          <header className="flex items-center justify-between mb-8">
+          <header className="flex items-center justify-between mb-4 sm:mb-8">
             <div>
               <h1 className="text-3xl font-bold text-white">Settings</h1>
               <p className="text-gray-400 mt-1">Customize your typing experience</p>
@@ -37,7 +36,7 @@ const Settings = () => {
                 </h2>
                 
                 <div className="flex flex-col space-y-6">
-                  <div className="flex items-center gap-6">
+                  <div className="flex flex-col sm:flex-row items-center gap-6">
                     <div className="relative group">
                       <img
                         src="/images/avatat1.webp"
@@ -124,7 +123,6 @@ const Settings = () => {
             </div>
           </div>
         </div>
-      </div>
       </div>
       <Footer />
     </div>

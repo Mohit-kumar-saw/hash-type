@@ -21,14 +21,13 @@ export default function Dashboard() {
   const speedChange = "+2.3%";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 w-full mt-[448px]">
-     <div className="max-w-[75%] mx-auto"  >
-      <Navbar />
-     </div>
-      <div className="max-w-[80%] mx-auto"  >
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="flex-1">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+        <Navbar />
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Header Section */}
-        <header className="flex items-center justify-between mb-6 max-w-[1920px] mx-auto">
+        <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 sm:mb-6 gap-4">
           <div>
             <h1 className="text-3xl font-bold text-white">Dashboard</h1>
             <p className="text-gray-400 mt-1">Track your typing progress</p>
@@ -39,7 +38,7 @@ export default function Dashboard() {
         </header>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 max-w-[1920px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {/* WPM Stat */}
           <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700/50">
             <div className="flex items-center justify-between">
@@ -107,7 +106,7 @@ export default function Dashboard() {
         </div>
 
         {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-[1920px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Progress Graph */}
           <div className="lg:col-span-2 bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700/50">
             <h2 className="text-xl font-bold text-white mb-4">Typing Progress</h2>
@@ -140,7 +139,6 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-      </div>
       </div>
       <Footer />
     </div>

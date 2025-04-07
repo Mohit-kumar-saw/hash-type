@@ -22,14 +22,13 @@ export default function Home() {
   }
 
   return (
-    
-    <>
-
-      <main className="h-[100vh] p-10 bg-gradient-to-b from-gray-900 to-gray-800 ">
+    <main className="flex-1">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <Navbar />
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <TypingGame />
-      </main>
-    </>
-    
+      </div>
+    </main>
   );
 }

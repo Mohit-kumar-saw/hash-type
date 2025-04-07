@@ -14,19 +14,17 @@ const Page = () => {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 mt-[1870px]">
+    <div className="flex-1">
       {/* Navbar */}
-      <div className="max-w-[75%] mx-auto">
-        <header className="pt-10">
-          <Navbar />
-        </header>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+        <Navbar />
       </div>
 
       {/* Main Content */}
       <main className="w-full">
         {/* Hero Section */}
-        <section className="text-center py-16 px-8 mt-8">
-          <div className="flex flex-col items-center max-w-[75%] mx-auto">
+        <section className="text-center py-8 sm:py-16 px-4 sm:px-8">
+          <div className="flex flex-col items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="relative">
               <img src="/images/certificate.svg" alt="Certificate" className="w-56 mb-6 drop-shadow-2xl" />
               <div className="absolute inset-0 bg-purple-500/20 blur-3xl -z-10 rounded-full"></div>
@@ -45,8 +43,8 @@ const Page = () => {
         </section>
 
         {/* Section 2 - Certificate Promo */}
-        <section className="py-16 px-8">
-          <div className="max-w-[75%] mx-auto">
+        <section className="py-8 sm:py-16 px-4 sm:px-8">
+          <div className="max-w-7xl mx-auto">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
               <div className="lg:w-1/2">
                 <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 p-8">
@@ -71,8 +69,8 @@ const Page = () => {
         </section>
 
         {/* Section 3 - Typing Customization */}
-        <section className="py-16 px-8">
-          <div className="max-w-[75%] mx-auto">
+        <section className="py-8 sm:py-16 px-4 sm:px-8">
+          <div className="max-w-7xl mx-auto">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
               <div className="lg:w-1/2">
                 <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 p-8">
@@ -108,8 +106,8 @@ const Page = () => {
         </section>
 
         {/* Pricing Section */}
-        <section className="py-16 px-8">
-          <div className="max-w-[75%] mx-auto text-center">
+        <section className="py-8 sm:py-16 px-4 sm:px-8">
+          <div className="max-w-7xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-12 text-white">Choose Your Plan</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {["Basic", "Pro", "Enterprise"].map((plan, index) => (
