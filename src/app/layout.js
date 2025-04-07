@@ -12,12 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
+      <body className="bg-gradient-to-b from-gray-900 to-gray-800">
         <AuthContext>
-          <Providers>
-            <div className="min-h-screen flex flex-col">
-              {children}
-            </div>
+        <Providers>
+          {children}
           </Providers>
         </AuthContext>
       </body>

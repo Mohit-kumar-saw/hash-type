@@ -14,16 +14,18 @@ const Page = () => {
   const router = useRouter();
 
   return (
-    <div className="flex-1">
+    <div className="h-[100%] bg-gray-900 w-full">
       {/* Navbar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-        <Navbar />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="pt-4">
+          <Navbar />
+        </header>
       </div>
 
       {/* Main Content */}
       <main className="w-full">
         {/* Hero Section */}
-        <section className="text-center py-8 sm:py-16 px-4 sm:px-8">
+        <section className="text-center py-16 px-8 mt-8">
           <div className="flex flex-col items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="relative">
               <img src="/images/certificate.svg" alt="Certificate" className="w-56 mb-6 drop-shadow-2xl" />
@@ -43,7 +45,7 @@ const Page = () => {
         </section>
 
         {/* Section 2 - Certificate Promo */}
-        <section className="py-8 sm:py-16 px-4 sm:px-8">
+        <section className="py-16 px-8">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
               <div className="lg:w-1/2">
@@ -69,7 +71,7 @@ const Page = () => {
         </section>
 
         {/* Section 3 - Typing Customization */}
-        <section className="py-8 sm:py-16 px-4 sm:px-8">
+        <section className="py-16 px-8">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
               <div className="lg:w-1/2">
@@ -106,7 +108,7 @@ const Page = () => {
         </section>
 
         {/* Pricing Section */}
-        <section className="py-8 sm:py-16 px-4 sm:px-8">
+        <section className="py-16 px-8">
           <div className="max-w-7xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-12 text-white">Choose Your Plan</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

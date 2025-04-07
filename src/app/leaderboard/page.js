@@ -95,79 +95,83 @@ export default function Leaderboard() {
   };
 
   return (
-    <div className="flex-1">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+    <div className="h-[100%] bg-gray-900 w-full">
+      <div className="max-w-7xl mx-auto px-4 pt-4 sm:px-6 lg:px-8">
         <Navbar />
       </div>
 
       {/* Leaderboard Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Header */}
-        <header className="flex items-center justify-between mb-4 sm:mb-6">
-          <div>
-            <h1 className="text-3xl font-bold text-white">Leaderboard</h1>
-            <p className="text-gray-400 mt-1">Top performers in typing challenges</p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full py-6">
+          {/* Header */}
+          <div className="max-w-[1920px] mx-auto">
+            <header className="flex items-center justify-between mb-6">
+              <div>
+                <h1 className="text-3xl font-bold text-white">Leaderboard</h1>
+                <p className="text-gray-400 mt-1">Top performers in typing challenges</p>
+              </div>
+            </header>
+
+            {/* Tabs */}
+            <div className="flex space-x-1 bg-gray-800/50 backdrop-blur-sm p-1 rounded-lg w-fit mb-6">
+              <button
+                className={`px-4 py-2 rounded-lg transition-all ${
+                  activeTab === 'daily'
+                    ? 'bg-purple-600 text-white'
+                    : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
+                }`}
+                onClick={() => setActiveTab('daily')}
+              >
+                <div className="flex items-center gap-2">
+                  <ClockIcon className="w-5 h-5" />
+                  <span>Daily</span>
+                </div>
+              </button>
+              <button
+                className={`px-4 py-2 rounded-lg transition-all ${
+                  activeTab === 'weekly'
+                    ? 'bg-purple-600 text-white'
+                    : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
+                }`}
+                onClick={() => setActiveTab('weekly')}
+              >
+                <div className="flex items-center gap-2">
+                  <ClockIcon className="w-5 h-5" />
+                  <span>Weekly</span>
+                </div>
+              </button>
+              <button
+                className={`px-4 py-2 rounded-lg transition-all ${
+                  activeTab === 'all-time'
+                    ? 'bg-purple-600 text-white'
+                    : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
+                }`}
+                onClick={() => setActiveTab('all-time')}
+              >
+                <div className="flex items-center gap-2">
+                  <StarIcon className="w-5 h-5" />
+                  <span>All-time</span>
+                </div>
+              </button>
+            </div>
+
+            {/* Leaderboard Table */}
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 overflow-x-auto">
+              <table className="w-full min-w-[600px]">
+                <thead>
+                  <tr className="border-b border-gray-700/50">
+                    <th className="py-4 px-6 text-left text-gray-400 font-medium w-[10%]">Rank</th>
+                    <th className="py-4 px-6 text-left text-gray-400 font-medium w-[40%]">Player</th>
+                    <th className="py-4 px-6 text-left text-gray-400 font-medium w-[25%]">Speed</th>
+                    <th className="py-4 px-6 text-left text-gray-400 font-medium w-[25%]">Accuracy</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {renderData()}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </header>
-
-        {/* Tabs */}
-        <div className="flex flex-wrap space-x-1 bg-gray-800/50 backdrop-blur-sm p-1 rounded-lg w-fit mb-4 sm:mb-6">
-          <button
-            className={`px-4 py-2 rounded-lg transition-all ${
-              activeTab === 'daily'
-                ? 'bg-purple-600 text-white'
-                : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
-            }`}
-            onClick={() => setActiveTab('daily')}
-          >
-            <div className="flex items-center gap-2">
-              <ClockIcon className="w-5 h-5" />
-              <span>Daily</span>
-            </div>
-          </button>
-          <button
-            className={`px-4 py-2 rounded-lg transition-all ${
-              activeTab === 'weekly'
-                ? 'bg-purple-600 text-white'
-                : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
-            }`}
-            onClick={() => setActiveTab('weekly')}
-          >
-            <div className="flex items-center gap-2">
-              <ClockIcon className="w-5 h-5" />
-              <span>Weekly</span>
-            </div>
-          </button>
-          <button
-            className={`px-4 py-2 rounded-lg transition-all ${
-              activeTab === 'all-time'
-                ? 'bg-purple-600 text-white'
-                : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
-            }`}
-            onClick={() => setActiveTab('all-time')}
-          >
-            <div className="flex items-center gap-2">
-              <StarIcon className="w-5 h-5" />
-              <span>All-time</span>
-            </div>
-          </button>
-        </div>
-
-        {/* Leaderboard Table */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 overflow-x-auto">
-          <table className="w-full min-w-[600px]">
-            <thead>
-              <tr className="border-b border-gray-700/50">
-                <th className="py-4 px-6 text-left text-gray-400 font-medium w-[10%]">Rank</th>
-                <th className="py-4 px-6 text-left text-gray-400 font-medium w-[40%]">Player</th>
-                <th className="py-4 px-6 text-left text-gray-400 font-medium w-[25%]">Speed</th>
-                <th className="py-4 px-6 text-left text-gray-400 font-medium w-[25%]">Accuracy</th>
-              </tr>
-            </thead>
-            <tbody>
-              {renderData()}
-            </tbody>
-          </table>
         </div>
       </div>
       <Footer />
