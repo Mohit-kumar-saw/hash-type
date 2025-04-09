@@ -54,7 +54,7 @@ const AuthForm = () => {
 
           if (callback?.ok && !callback?.error) {
             toast.success("Logged in!");
-            router.push("/landingpage");
+            router.push("/");
           }
         })
         .finally(() => setIsLoading(false));

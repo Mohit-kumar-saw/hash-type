@@ -1,17 +1,38 @@
+"use client";
+
 // pages/dashboard.js
 
 import Footer from "../../components/Footer";
 import Graph from "../../components/Graph";
 import Navbar from "../../components/Navbar";
 import Button from "../../components/ui/Button";
+import { useRouter } from "next/navigation";
 import { 
   ChartBarIcon, 
   ClockIcon, 
   DocumentTextIcon, 
   StarIcon 
 } from '@heroicons/react/outline';
+import { useEffect, useState } from 'react';
 
 export default function Dashboard() {
+  const router = useRouter();
+  const [testResults, setTestResults] = useState({ wpm: 0, accuracy: 0, typedWords: 0, lastPractice: 'N/A' });
+
+  useEffect(() => {
+    async function fetchTestResults() {
+      try {
+        const response = await fetch('/api/tests/results');
+        const data = await response.json();
+        setTestResults(data);
+      } catch (error) {
+        console.error('Error fetching test results:', error);
+      }
+    }
+
+    fetchTestResults();
+  }, []);
+
   // Dummy data
   const accuracy = 98;
   const lastPractice = "2 days ago";
@@ -34,7 +55,7 @@ export default function Dashboard() {
               <h1 className="text-3xl font-bold text-white">Dashboard</h1>
               <p className="text-gray-400 mt-1">Track your typing progress</p>
             </div>
-            <Button className="bg-purple-600 hover:bg-purple-700 text-white">
+            <Button className="bg-purple-600 hover:bg-purple-700 text-white" onClick={() => router.push('/')}>
               Start New Test
             </Button>
           </header>
@@ -46,7 +67,7 @@ export default function Dashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-400 text-sm">Average WPM</p>
-                  <p className="text-2xl font-bold text-white mt-1">{wpm}</p>
+                  <p className="text-2xl font-bold text-white mt-1">{testResults.wpm}</p>
                 </div>
                 <div className="p-3 bg-purple-500/10 rounded-lg">
                   <ChartBarIcon className="w-6 h-6 text-purple-500" />
@@ -63,7 +84,7 @@ export default function Dashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-400 text-sm">Accuracy Rate</p>
-                  <p className="text-2xl font-bold text-white mt-1">{accuracy}%</p>
+                  <p className="text-2xl font-bold text-white mt-1">{testResults.accuracy}%</p>
                 </div>
                 <div className="p-3 bg-green-500/10 rounded-lg">
                   <StarIcon className="w-6 h-6 text-green-500" />
@@ -79,7 +100,7 @@ export default function Dashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-400 text-sm">Words Typed</p>
-                  <p className="text-2xl font-bold text-white mt-1">{typedWords}</p>
+                  <p className="text-2xl font-bold text-white mt-1">{testResults.typedWords}</p>
                 </div>
                 <div className="p-3 bg-blue-500/10 rounded-lg">
                   <DocumentTextIcon className="w-6 h-6 text-blue-500" />
@@ -95,7 +116,7 @@ export default function Dashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-400 text-sm">Last Practice</p>
-                  <p className="text-2xl font-bold text-white mt-1">{lastPractice}</p>
+                  <p className="text-2xl font-bold text-white mt-1">{testResults.lastPractice}</p>
                 </div>
                 <div className="p-3 bg-yellow-500/10 rounded-lg">
                   <ClockIcon className="w-6 h-6 text-yellow-500" />

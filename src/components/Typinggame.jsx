@@ -286,11 +286,35 @@ const TypingGame = () => {
     return Math.round(wpm);
   };
 
-  const gameOver = () => {
+  const gameOver = async () => {
     if (timer) clearInterval(timer);
     setTimer(null);
     setGameOverState(true);
     setIsModalOpen(true);
+
+    // Send test results to the API
+    const results = {
+      wpm: calculateWPM(),
+      accuracy: calculateAccuracy(),
+      streak,
+      bestStreak,
+      mistakes,
+    };
+
+    try {
+      const response = await fetch('/api/tests/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(results),
+      });
+
+      const data = await response.json();
+      console.log('API Response:', data);
+    } catch (error) {
+      console.error('Error sending test results:', error);
+    }
   };
 
   const calculateWPM = () => {
@@ -327,10 +351,10 @@ const TypingGame = () => {
   };
 
   return (
-    <div className="min-h-[90%] bg-gradient-to-b from-gray-900 to-gray-800 text-white p-4 flex flex-col">
+    <div className="min-h-[90%] bg-gray-900 text-white p-4 flex flex-col">
       <div className="max-w-5xl mx-auto w-full flex-1 flex flex-col">
-        {/* Header Section - Reduced margin */}
-        <div className="flex justify-between items-start mb-3">
+        {/* Header Section */}
+        <div className="flex justify-between items-center mb-4">
           {/* Timer Section */}
           {isGameActive && (
             <div className="flex items-center gap-2">
@@ -345,7 +369,7 @@ const TypingGame = () => {
           <div className="flex items-center gap-2">
             {!isGameActive ? (
               <>
-                {/* Difficulty Dropdown - Only shown before game starts */}
+                {/* Difficulty Dropdown */}
                 <div className="relative group">
                   <button 
                     className="px-3 py-1.5 rounded-lg bg-gray-800 text-white flex items-center gap-2 hover:bg-gray-700 transition-colors min-w-[130px] justify-between"
@@ -354,7 +378,6 @@ const TypingGame = () => {
                     <span>{DIFFICULTY_LEVELS[difficulty].name}</span>
                     <ChevronDownIcon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
                   </button>
-                  
                   {isDropdownOpen && (
                     <div className="absolute top-full left-0 mt-1 w-full bg-gray-800 rounded-lg shadow-xl border border-gray-700 overflow-hidden z-10">
                       {Object.keys(DIFFICULTY_LEVELS).map((level) => (
@@ -375,7 +398,7 @@ const TypingGame = () => {
                   )}
                 </div>
 
-                {/* Time Options - Only shown before game starts */}
+                {/* Time Options */}
                 <div className="flex gap-1.5">
                   {DIFFICULTY_LEVELS[difficulty].timeOptions.map((time) => (
                     <button
@@ -393,7 +416,7 @@ const TypingGame = () => {
                 </div>
               </>
             ) : (
-              /* Restart button - Only shown during game */
+              /* Restart button */
               <button
                 onClick={newGame}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/50 backdrop-blur-sm hover:bg-gray-700/50 transition-all text-purple-400 hover:text-purple-300"
@@ -405,8 +428,8 @@ const TypingGame = () => {
           </div>
         </div>
 
-        {/* Typing Area - Adjusted height and margin */}
-        <div className="relative flex-1 flex flex-col max-h-[350px] mb-2">
+        {/* Typing Area */}
+        <div className="relative flex-1 flex flex-col max-h-[350px] mb-4">
           <div
             ref={typingContainerRef}
             className="relative h-full bg-gray-800/50 backdrop-blur-sm rounded-lg shadow-xl overflow-hidden"
@@ -423,41 +446,22 @@ const TypingGame = () => {
                 lineHeight: '1.6',
               }}
             >
-              {words.map((word, i) => (
-                <div
-                  className={`word inline-block mx-1.5 my-1 font-bold ${
-                    i === 0 ? "current" : ""
-                  }`}
-                  key={i}
-                >
-                  {word.split("").map((letter, letterIndex) => (
-                    <span
-                      className={`letter ${
-                        letterIndex === 0 && i === 0 ? "current" : ""
-                      }`}
-                      key={letterIndex}
-                    >
-                      {letter}
-                    </span>
-                  ))}
-                  <span className="letter opacity-0 w-0">{"."}</span>
-                </div>
-              ))}
-          </div>
-          <div
-            ref={cursorRef}
+              {words.map((word, i) => formatWord(word, i))}
+            </div>
+            <div
+              ref={cursorRef}
               className="cursor absolute w-0.5 h-[1.6em] bg-purple-600 transition-all duration-100 pointer-events-none"
-            style={{
+              style={{
                 top: '0.5em',
                 width: '3px',
                 height: '1.6em',
                 backgroundColor: '#a78bfa',
                 marginTop: '0.3em',
                 left: 0,
-            }}
-          ></div>
+              }}
+            ></div>
 
-            {/* Start Button Overlay - Updated with play icon */}
+            {/* Start Button Overlay */}
             {!isGameActive && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50 backdrop-blur-sm transition-all">
                 <button
@@ -471,8 +475,8 @@ const TypingGame = () => {
           </div>
         </div>
 
-        {/* Stats Section - Adjusted margin */}
-        <div className="grid grid-cols-4 gap-2">
+        {/* Stats Section */}
+        <div className="grid grid-cols-4 gap-2 mb-4">
           <div className="bg-gray-800/50 backdrop-blur-sm p-2 rounded-lg text-center">
             <div className="text-lg font-bold text-purple-400">{calculateWPM()}</div>
             <div className="text-gray-400 text-xs">WPM</div>
@@ -489,8 +493,8 @@ const TypingGame = () => {
             <div className="text-lg font-bold text-red-400">{bestStreak}</div>
             <div className="text-gray-400 text-xs">Best Streak</div>
           </div>
-          </div>
-          
+        </div>
+
         {/* Game Over Modal */}
         {isModalOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">

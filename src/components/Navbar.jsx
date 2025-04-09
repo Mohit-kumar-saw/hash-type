@@ -23,7 +23,7 @@ const Navbar = () => {
         <div className="flex items-center gap-2">
           <div
             className="font-bold text-[30px] text-white pl-3 cursor-pointer hover:scale-110 transition-all"
-            onClick={() => router.push('/landingpage')}
+            onClick={() => router.push('/')}
           >
             Hash<span className="text-purple-400">Type</span>
           </div>
@@ -34,7 +34,7 @@ const Navbar = () => {
             className="w-[25px] h-[25px] hover:scale-110 transition-all"
             width={30}
             height={30}
-            onClick={() => router.push('/')}
+            onClick={() => router.push('/typing')}
           />
 
           <DropdownMenu>

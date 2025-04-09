@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -9,6 +9,21 @@ import { UserCircleIcon, MoonIcon, MusicNoteIcon, LogoutIcon, TrashIcon } from '
 const Settings = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isMusicEnabled, setIsMusicEnabled] = useState(false);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch('/api/user/data');
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   return (
     <div className="h-[100%] bg-gray-900 w-full">
@@ -108,6 +123,20 @@ const Settings = () => {
                 </div>
               </div>
             </div>
+
+            {/* User Data Section */}
+            {userData && (
+              <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 p-6 mt-6">
+                <h2 className="text-xl font-semibold text-white mb-6">Your Achievements</h2>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-3 bg-gray-700/30 rounded-lg">
+                    <span className="text-gray-200">Personal Best</span>
+                    <span className="text-purple-400">{userData.personalBest} WPM</span>
+                  </div>
+                  {/* Add more user-specific data here as needed */}
+                </div>
+              </div>
+            )}
 
             {/* Account Actions */}
             <div className="mt-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 p-6">
